@@ -10,7 +10,9 @@ class EntriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('entries.index');
+		$entries = Entry::all();
+
+		return View::make('entries.index', compact('entries'));
 	}
 
 	/**
