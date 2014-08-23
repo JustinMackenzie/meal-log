@@ -2,6 +2,7 @@
 
 @section('content')
 <h1>Food Entries</h1>
+<a href="{{ URL::route('entries.create') }}" class="btn btn-success"> Add New Entry</a>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -11,6 +12,7 @@
                 <th>Fats</th>
                 <th>Carbohydrates</th>
                 <th>Proteins</th>
+                <th><i class="icon-cog"></i></th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +24,9 @@
                     <td>{{ $entry->fats }}</td>
                     <td>{{ $entry->carbohydrates }}</td>
                     <td>{{ $entry->proteins }}</td>
+                    <td>
+                        <a href="{{ URL::route('entries.edit', $entry->id) }}" class="btn btn-success btn-mini pull-left">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
