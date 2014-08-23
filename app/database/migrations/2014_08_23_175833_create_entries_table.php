@@ -15,6 +15,11 @@ class CreateEntriesTable extends Migration {
 		Schema::create('entries', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('food');
+			$table->decimal('calories');
+			$table->decimal('fats');
+			$table->decimal('carbohydrates');
+			$table->decimal('proteins');
 			$table->timestamps();
 		});
 	}
