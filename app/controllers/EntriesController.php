@@ -15,7 +15,24 @@ class EntriesController extends \BaseController {
 						->where('created_at', '<=', date('Y-m-d').' 23:59:59')
 						->get();
 
-		return View::make('entries.index', compact('entries'));
+		$totalCalories = 0;
+		$totalFats = 0;
+		$totalCarbs = 0;
+		$totalProteins = 0;
+
+		foreach ($entries as $entry) 
+		{
+			$totalCalories += $entry->calories;
+			$totalFats += $entry->fats;
+			$totalCarbs += $entry->carbohydrates;
+			$totalProteins += $entry->proteins;
+		}
+
+		return View::make('entries.index')->with(compact('entries'))
+							->with(compact('totalCalories'))
+							->with(compact('totalFats'))
+							->with(compact('totalCarbs'))
+							->with(compact('totalProteins'));
 	}
 
 	/**

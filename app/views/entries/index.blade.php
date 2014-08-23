@@ -27,6 +27,13 @@
                     </td>
                 </tr>
             @endforeach
+            <tr>
+            	<td><b>Total</b></td>
+            	<td><b>{{ $totalCalories }}</b></td>
+                <td><b>{{ $totalFats }}</b></td>
+                <td><b>{{ $totalCarbs }}</b></td>
+                <td><b>{{ $totalProteins }}</b></td>
+            </tr>
         </tbody>
     </table>
 @stop
