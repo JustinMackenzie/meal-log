@@ -24,6 +24,10 @@
                     <td>{{ $entry->proteins }}</td>
                     <td>
                         <a href="{{ URL::route('entries.edit', $entry->id) }}" class="btn btn-success btn-mini pull-left">Edit</a>
+                    
+                    	{{ Form::open(array('route' => array('entries.destroy', $entry->id), 'method' => 'delete')) }}
+                            <button type="submit" href="{{ URL::route('entries.destroy', $entry->id) }}" class="btn btn-danger btn-mini pull-left">Delete</button>
+                        {{ Form::close() }}
                     </td>
                 </tr>
             @endforeach
@@ -33,6 +37,7 @@
                 <td><b>{{ $totalFats }}</b></td>
                 <td><b>{{ $totalCarbs }}</b></td>
                 <td><b>{{ $totalProteins }}</b></td>
+                <td></td>
             </tr>
         </tbody>
     </table>

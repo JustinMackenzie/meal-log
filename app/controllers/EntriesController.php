@@ -185,7 +185,11 @@ class EntriesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$entry = Entry::find($id);
+
+		$entry->delete();
+
+		return Redirect::route('entries.index');
 	}
 
 }
