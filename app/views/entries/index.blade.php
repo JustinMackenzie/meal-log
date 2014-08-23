@@ -1,13 +1,12 @@
 @extends('layouts.default')
 
 @section('content')
-<h1>Food Entries</h1>
+<h1>Today's Meal Log</h1>
 <a href="{{ URL::route('entries.create') }}" class="btn btn-success"> Add New Entry</a>
 <table class="table table-striped">
         <thead>
             <tr>
                 <th>Food</th>
-                <th>Date/Time</th>
                 <th>Calories</th>
                 <th>Fats</th>
                 <th>Carbohydrates</th>
@@ -19,7 +18,6 @@
             @foreach ($entries as $entry)
                 <tr>
                     <td>{{ $entry->food }}</td>
-                    <td>{{ $entry->created_at }}</td>
                     <td>{{ $entry->calories }}</td>
                     <td>{{ $entry->fats }}</td>
                     <td>{{ $entry->carbohydrates }}</td>

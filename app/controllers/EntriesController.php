@@ -10,7 +10,10 @@ class EntriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$entries = Entry::all();
+
+		$entries = Entry::where('created_at', '>=', date('Y-m-d'))
+						->where('created_at', '<=', date('Y-m-d').' 23:59:59')
+						->get();
 
 		return View::make('entries.index', compact('entries'));
 	}
