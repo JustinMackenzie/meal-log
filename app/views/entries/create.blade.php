@@ -1,10 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-<h2>Save a New Food Entry</h2>
     <div class="row">
         <div class="col-md-8">
-            
+            <h2>Save a New Food Entry</h2>
             @if($errors->has())
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
