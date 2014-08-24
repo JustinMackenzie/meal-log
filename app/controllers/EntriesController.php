@@ -13,6 +13,7 @@ class EntriesController extends \BaseController {
 
 		$entries = Entry::where('created_at', '>=', date('Y-m-d'))
 						->where('created_at', '<=', date('Y-m-d').' 23:59:59')
+						->where('user_id', '=', Auth::user()->id)
 						->get();
 
 		$totalCalories = 0;
@@ -86,6 +87,7 @@ class EntriesController extends \BaseController {
 		$entry->carbohydrates = Input::get('carbohydrates');
 		$entry->proteins = Input::get('proteins');
 		$entry->calories = Input::get('calories');
+		$entry->user_id = Auth::user()->id;
 
 		if($entry->save())
 		{
