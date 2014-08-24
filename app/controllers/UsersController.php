@@ -34,14 +34,12 @@ class UsersController extends \BaseController {
 	{
 		// Validate input.
 		$input = array(
-			'username' => Input::get('username'),
 			'email' => Input::get('email'),
 			'password' => Input::get('password'),
 			'password_confirmation' => Input::get('confirmation')
 			);
 
 		$rules = array(
-			'username' => 'required',
 			'email' => array('required', 'email'),
 			'password' => array('required', 'min:8' , 'confirmed'),
 			'password_confirmation' => array('required','min:8')
@@ -56,7 +54,6 @@ class UsersController extends \BaseController {
 		}
 
 		$user = new User();
-		$user->username = Input::get('username');
 		$user->email = Input::get('email');
 		$user->password = Hash::make(Input::get('password'));
 
@@ -116,6 +113,25 @@ class UsersController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function login()
+	{
+		return View::make('users.login');
+	}
+
+	public function signIn()
+	{
+		if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) 
+		{
+    		return Redirect::route('entries.index');
+		} 
+		else 
+		{
+    		return Redirect::to('login')
+        		->with('message', 'Your username/password combination was incorrect')
+        		->withInput();
+		}
 	}
 
 }

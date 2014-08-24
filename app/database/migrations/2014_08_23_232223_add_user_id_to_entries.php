@@ -29,7 +29,7 @@ class AddUserIdToEntries extends Migration {
 	{
 		Schema::table('entries', function(Blueprint $table)
 		{
-			$table->dropForeign('user_id');
+			$table->dropForeign('entries_user_id_foreign');
 			$table->dropColumn('user_id');
 		});
 	}

@@ -18,3 +18,9 @@ Route::get('/', function()
 
 Route::resource('entries', 'EntriesController');
 Route::resource('users', 'UsersController');
+
+// route to show the login form
+Route::get('login', array('uses' => 'UsersController@login', 'as' => 'login'));
+
+// route to process the form
+Route::post('signin', array('uses' => 'UsersController@signIn', 'as' => 'signin'));
