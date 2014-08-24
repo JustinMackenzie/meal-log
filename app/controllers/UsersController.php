@@ -134,4 +134,10 @@ class UsersController extends \BaseController {
 		}
 	}
 
+	public function signout()
+	{
+		Auth::logout();
+
+		return Redirect::route('login');
+	}
 }

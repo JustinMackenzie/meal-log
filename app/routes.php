@@ -22,5 +22,8 @@ Route::resource('users', 'UsersController');
 // route to show the login form
 Route::get('login', array('uses' => 'UsersController@login', 'as' => 'login'));
 
+// route to show the login form
+Route::get('signout', array('uses' => 'UsersController@signout', 'as' => 'signout'));
+
 // route to process the form
 Route::post('signin', array('uses' => 'UsersController@signIn', 'as' => 'signin'));
