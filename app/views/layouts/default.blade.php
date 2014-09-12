@@ -46,6 +46,8 @@
             @if(!Auth::check())
             <li><a href="{{ URL::route('login') }}">Login</a></li>
             @else
+            <li><a href="{{ URL::route('entries.index') }}">Meal Log</a></li>
+            <li><a href="{{ URL::route('weights.index') }}">Weight Log</a></li>
             <li><a href="{{ URL::route('signout') }}">Logout</a></li>
             @endif
           </ul>
