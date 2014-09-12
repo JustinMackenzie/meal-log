@@ -194,4 +194,31 @@ class EntriesController extends \BaseController {
 		return Redirect::route('entries.index');
 	}
 
+	public function archive($date)
+	{
+		$entries = Entry::where('created_at', '>=', $date)
+						->where('created_at', '<=', $date.' 23:59:59')
+						->where('user_id', '=', Auth::user()->id)
+						->get();
+
+		$totalCalories = 0;
+		$totalFats = 0;
+		$totalCarbs = 0;
+		$totalProteins = 0;
+
+		foreach ($entries as $entry) 
+		{
+			$totalCalories += $entry->calories;
+			$totalFats += $entry->fats;
+			$totalCarbs += $entry->carbohydrates;
+			$totalProteins += $entry->proteins;
+		}
+
+		return View::make('entries.index')->with(compact('entries'))
+							->with(compact('totalCalories'))
+							->with(compact('totalFats'))
+							->with(compact('totalCarbs'))
+							->with(compact('totalProteins'));
+	}
+
 }

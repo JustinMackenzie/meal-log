@@ -17,6 +17,9 @@ Route::get('/', function()
 });
 
 Route::resource('entries', 'EntriesController');
+
+Route::get('entries/archive/{date}', array('uses' => 'EntriesController@archive', 'as' => 'entries.archive'));
+
 Route::resource('users', 'UsersController');
 
 // route to show the login form
