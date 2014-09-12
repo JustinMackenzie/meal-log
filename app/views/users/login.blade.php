@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="row">
-	<div class="col-md-8">
-		<h2>Sign In</h2>
+	<div class="col-md-6 col-md-offset-3">
 			@if($errors->has())
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
@@ -13,22 +12,18 @@
             @endif
 			{{ Form::open(array('route' => 'signin')) }}
 
-		        <div class="control-group">
+		        <div class="form-group">
 		            {{ Form::label('email', 'Email') }}
-		            <div class="controls">
-		                {{ Form::text('email', Input::old('email')) }}
-		            </div>
+		            {{ Form::text('email', Input::old('email'), array('class' => 'form-control')) }}
 		        </div>
 
-		         <div class="control-group">
+		         <div class="form-group">
 		            {{ Form::label('password', 'Password') }}
-		            <div class="controls">
-		                {{ Form::password('password') }}
-		            </div>
+		            {{ Form::password('password', array('class' => 'form-control')) }}
 		        </div>
 
 		        <div class="form-actions">
-		            {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-save btn-large')) }}
+		            {{ Form::submit('Sign In', array('class' => 'btn btn-primary btn-save btn-large')) }}
 		        </div>
 
 	    	{{ Form::close() }}

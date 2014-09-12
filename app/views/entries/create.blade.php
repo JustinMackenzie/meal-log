@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8">
-            <h2>Save a New Food Entry</h2>
+        <div class="col-md-6 col-md-offset-3">
+            <h2>What did you eat?</h2>
             @if($errors->has())
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
@@ -14,39 +14,29 @@
 
             {{ Form::open(array('route' => 'entries.store')) }}
 
-            <div class="control-group">
+            <div class="form-group">
                 {{ Form::label('food', 'Food') }}
-                <div class="controls">
-                    {{ Form::text('food', Input::old('food')) }}
-                </div>
+                {{ Form::text('food', Input::old('food'), array('class' => 'form-control')) }}
             </div>
 
-            <div class="control-group">
+            <div class="form-group">
                 {{ Form::label('calories', 'Calories') }}
-                <div class="controls">
-                    {{ Form::input('number','calories', Input::old('calories')) }}
-                </div>
+                {{ Form::input('number','calories', Input::old('calories'), array('class' => 'form-control')) }}
             </div>
 
-            <div class="control-group">
+            <div class="form-group">
                 {{ Form::label('fats', 'Fats') }}
-                <div class="controls">
-                    {{ Form::input('number','fats', Input::old('fats')) }}
-                </div>
+                {{ Form::input('number','fats', Input::old('fats'), array('class' => 'form-control')) }}
             </div>
 
-            <div class="control-group">
+            <div class="form-group">
                 {{ Form::label('carbohydrates', 'Carbohydrates') }}
-                <div class="controls">
-                    {{ Form::input('number','carbohydrates', Input::old('carbohydrates')) }}
-                </div>
+                {{ Form::input('number','carbohydrates', Input::old('carbohydrates'), array('class' => 'form-control')) }}
             </div>
 
-            <div class="control-group">
+            <div class="form-group">
                 {{ Form::label('proteins', 'Proteins') }}
-                <div class="controls">
-                    {{ Form::input('number','proteins', Input::old('proteins')) }}
-                </div>
+                {{ Form::input('number','proteins', Input::old('proteins'), array('class' => 'form-control')) }}
             </div>
     		
 

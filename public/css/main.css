@@ -3,8 +3,11 @@ body {
 }
 .content {
   padding: 40px 15px;
-  text-align: center;
 }
 th{
+	text-align: center;
+}
+
+.center-text{
 	text-align: center;
 }

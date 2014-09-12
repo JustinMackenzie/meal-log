@@ -1,10 +1,10 @@
 @extends('layouts.default')
 
 @section('content')
-<h2>Save a Food Entry</h2>
+
     <div class="row">
-        <div class="col-md-8">
-            
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Make a mistake?</h2>
             @if($errors->has())
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
@@ -17,37 +17,27 @@
 
             <div class="control-group">
                 {{ Form::label('food', 'Food') }}
-                <div class="controls">
-                    {{ Form::text('food', Input::old('food', $entry->food)) }}
-                </div>
+                {{ Form::text('food', Input::old('food', $entry->food), array('class' => 'form-control')) }}
             </div>
 
             <div class="control-group">
                 {{ Form::label('calories', 'Calories') }}
-                <div class="controls">
-                    {{ Form::input('number','calories', Input::old('calories', $entry->calories)) }}
-                </div>
+                {{ Form::input('number','calories', Input::old('calories', $entry->calories), array('class' => 'form-control')) }}
             </div>
 
             <div class="control-group">
                 {{ Form::label('fats', 'Fats') }}
-                <div class="controls">
-                    {{ Form::input('number','fats', Input::old('fats', $entry->fats)) }}
-                </div>
+                {{ Form::input('number','fats', Input::old('fats', $entry->fats), array('class' => 'form-control')) }}
             </div>
 
             <div class="control-group">
                 {{ Form::label('carbohydrates', 'Carbohydrates') }}
-                <div class="controls">
-                    {{ Form::input('number','carbohydrates', Input::old('carbohydrates', $entry->carbohydrates)) }}
-                </div>
+                {{ Form::input('number','carbohydrates', Input::old('carbohydrates', $entry->carbohydrates), array('class' => 'form-control')) }}
             </div>
 
             <div class="control-group">
                 {{ Form::label('proteins', 'Proteins') }}
-                <div class="controls">
-                    {{ Form::input('number','proteins', Input::old('proteins', $entry->proteins)) }}
-                </div>
+                {{ Form::input('number','proteins', Input::old('proteins', $entry->proteins), array('class' => 'form-control')) }}
             </div>
     		
 
