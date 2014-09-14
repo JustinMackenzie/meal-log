@@ -56,6 +56,10 @@ class WeightsController extends \BaseController {
 		$entry->weight = Input::get('weight');
 		$entry->user_id = Auth::user()->id;
 
+		$profile = Auth::user()->profile;
+		$profile->weight = Input::get('weight');
+		$profile->save();
+
 		if($entry->save())
 		{
 			Session::flash('Success', 'Weight successfully saved.');
