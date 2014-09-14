@@ -41,6 +41,22 @@
                     <td><b>{{ $totalProteins }}</b></td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td><b>Goal</b></td>
+                    <td><b>{{ $goalCalories }}</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>To Go</b></td>
+                    <td><b>{{ $toGoCalories }}</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>

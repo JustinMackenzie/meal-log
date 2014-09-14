@@ -34,11 +34,17 @@ class EntriesController extends \BaseController {
 			$totalProteins += $entry->proteins;
 		}
 
+		$goalCalories = (int)Auth::user()->profile->calculateBMR();
+
+		$toGoCalories = $goalCalories - $totalCalories;
+
 		return View::make('entries.index')->with(compact('entries'))
 							->with(compact('totalCalories'))
 							->with(compact('totalFats'))
 							->with(compact('totalCarbs'))
-							->with(compact('totalProteins'));
+							->with(compact('totalProteins'))
+							->with(compact('goalCalories'))
+							->with(compact('toGoCalories'));
 	}
 
 	/**

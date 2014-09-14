@@ -21,6 +21,8 @@ Route::resource('users', 'UsersController');
 
 Route::resource('weights', 'WeightsController');
 
+Route::resource('profiles', 'ProfilesController');
+
 // route to show the login form
 Route::get('login', array('uses' => 'UsersController@login', 'as' => 'login'));
 
