@@ -51,13 +51,21 @@ class WeightsController extends \BaseController {
 			return Redirect::back()->withErrors($messages)->withInput();
 		}
 
+		$weight = Input::get('weight');
+
+		if(Input::get('weightUnit') == 'lb')
+		{
+			// Convert to kg
+			$weight = $weight / 2.2046;
+		}
+
 		// Store the input in an entry.
 		$entry = new Weight();
-		$entry->weight = Input::get('weight');
+		$entry->weight = $weight;
 		$entry->user_id = Auth::user()->id;
 
 		$profile = Auth::user()->profile;
-		$profile->weight = Input::get('weight');
+		$profile->weight = $weight;
 		$profile->save();
 
 		if($entry->save())
@@ -123,9 +131,17 @@ class WeightsController extends \BaseController {
 			return Redirect::back()->withErrors($messages)->withInput();
 		}
 
+		$weight = Input::get('weight');
+
+		if(Input::get('weightUnit') == 'lb')
+		{
+			// Convert to kg
+			$weight = $weight / 2.2046;
+		}
+
 		// Store the input in an entry.
 		$entry = Weight::find($id);
-		$entry->weight = Input::get('weight');
+		$entry->weight = $weight;
 
 		if($entry->save())
 		{

@@ -17,6 +17,15 @@
             <div class="form-group">
                 {{ Form::label('weight', 'Weight') }}
                 {{ Form::text('weight', Input::old('weight'), array('class' => 'form-control')) }}
+                <label>
+                    {{ Form::radio('weightUnit', 'kg', true) }}
+                    Kilograms
+                    </label>
+                    <br/>
+                    <label>
+                    {{ Form::radio('weightUnit', 'lb') }}
+                    Pounds
+                </label>
             </div>
 
             <div class="form-actions">
