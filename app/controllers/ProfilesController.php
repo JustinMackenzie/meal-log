@@ -54,12 +54,27 @@ class ProfilesController extends \BaseController {
 			return Redirect::back()->withErrors($messages)->withInput();
 		}
 
+		$height = Input::get('height');
+		$weight = Input::get('weight');
+
+		if(Input::get('heightUnit') == 'in')
+		{
+			// Convert to cm
+			$height = $height / 0.39370;
+		}
+
+		if(Input::get('weightUnit') == 'lb')
+		{
+			// Convert to kg
+			$weight = $weight / 2.2046;
+		}
+
 		$profile = new Profile();
 		$profile->user_id = Auth::user()->id;
 		$profile->male = Input::get('gender');
 		$profile->age = Input::get('age');
-		$profile->height = Input::get('height');
-		$profile->weight = Input::get('weight');
+		$profile->height = $height;
+		$profile->weight = $weight;
 
 		if($profile->save())
 		{
@@ -128,12 +143,27 @@ class ProfilesController extends \BaseController {
 			return Redirect::back()->withErrors($messages)->withInput();
 		}
 
+		$height = Input::get('height');
+		$weight = Input::get('weight');
+
+		if(Input::get('heightUnit') == 'in')
+		{
+			// Convert to cm
+			$height = $height / 0.39370;
+		}
+
+		if(Input::get('weightUnit') == 'lb')
+		{
+			// Convert to kg
+			$weight = $weight / 2.2046;
+		}
+
 		$profile = Profile::find($id);
 		$profile->user_id = Auth::user()->id;
 		$profile->male = Input::get('gender');
 		$profile->age = Input::get('age');
-		$profile->height = Input::get('height');
-		$profile->weight = Input::get('weight');
+		$profile->height = $height;
+		$profile->weight = $weight;
 
 		if($profile->save())
 		{

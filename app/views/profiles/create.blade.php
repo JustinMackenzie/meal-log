@@ -25,11 +25,29 @@
 		        <div class="form-group">
 		            {{ Form::label('height', 'Height') }}
 		            {{ Form::input('number','height', Input::old('height'), array('class' => 'form-control')) }}
+		            <label>
+		            {{ Form::radio('heightUnit', 'cm', true) }}
+		            Centimeters
+		        	</label>
+		        	<br/>
+		        	<label>
+		            {{ Form::radio('heightUnit', 'in') }}
+		            Inches
+		        	</label>
 		        </div>
 
 		        <div class="form-group">
 		            {{ Form::label('weight', 'Weight') }}
 		            {{ Form::input('number','weight', Input::old('weight'), array('class' => 'form-control')) }}
+		            <label>
+		            {{ Form::radio('weightUnit', 'kg', true) }}
+		            Kilograms
+		        	</label>
+		        	<br/>
+		        	<label>
+		            {{ Form::radio('weightUnit', 'lb') }}
+		            Pounds
+		        	</label>
 		        </div>
 
 		        <div class="form-actions">
