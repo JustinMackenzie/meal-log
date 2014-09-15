@@ -50,6 +50,11 @@
 		        	</label>
 		        </div>
 
+		        <div class="form-group">
+		            {{ Form::label('activity', 'Activity Level') }}
+		            {{ Form::select('activity', $activities, Input::old('activity', $profile->activity), array('class' => 'form-control')) }}
+		        </div>
+
 		        <div class="form-actions">
 		            {{ Form::submit('Save', array('class' => 'btn btn-primary btn-save btn-large')) }}
 		        </div>

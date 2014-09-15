@@ -23,4 +23,34 @@ class Profile extends \Eloquent {
 
 		return $result;
 	}
+
+	public function calculateTDEE()
+	{
+		$result = $this->calculateBMR();
+
+		switch($this->activity)
+		{
+			case 0:
+				$result *= 1.2;
+				break;
+
+			case 1:
+				$result *= 1.375;
+				break;
+
+			case 2:
+				$result *= 1.55;
+				break;
+
+			case 3:
+				$result *= 1.725;
+				break;
+
+			case 4:
+				$result *= 1.9;
+				break;
+		}
+
+		return $result;
+	}
 }

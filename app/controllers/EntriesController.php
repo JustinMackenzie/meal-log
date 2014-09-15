@@ -34,7 +34,7 @@ class EntriesController extends \BaseController {
 			$totalProteins += $entry->proteins;
 		}
 
-		$goalCalories = (int)Auth::user()->profile->calculateBMR();
+		$goalCalories = (int)Auth::user()->profile->calculateTDEE();
 
 		$toGoCalories = $goalCalories - $totalCalories;
 

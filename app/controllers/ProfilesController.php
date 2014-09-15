@@ -22,7 +22,15 @@ class ProfilesController extends \BaseController {
 	public function create()
 	{
 		$genders = array(1 =>'Male', 0 => 'Female');
-		return View::make('profiles.create')->with(compact('genders'));
+		$activities = array(
+				0	=>	'Little to no exercise',
+				1	=>	'Light exercise (1–3 days per week)',
+				2   =>  'Moderate exercise (3–5 days per week)',
+				3   =>  'Heavy exercise (6–7 days per week)',
+				4	=>  'Very heavy exercise (twice per day, extra heavy workouts)');
+
+		return View::make('profiles.create')->with(compact('genders'))
+											->with(compact('activities'));
 	}
 
 	/**
@@ -75,6 +83,7 @@ class ProfilesController extends \BaseController {
 		$profile->age = Input::get('age');
 		$profile->height = $height;
 		$profile->weight = $weight;
+		$profile->activity = Input::get('activity');
 
 		if($profile->save())
 		{
@@ -109,8 +118,16 @@ class ProfilesController extends \BaseController {
 	{
 		$profile = Profile::find($id);
 		$genders = array(1 =>'Male', 0 => 'Female');
+		$activities = array(
+				0	=>	'Little to no exercise',
+				1	=>	'Light exercise (1–3 days per week)',
+				2   =>  'Moderate exercise (3–5 days per week)',
+				3   =>  'Heavy exercise (6–7 days per week)',
+				4	=>  'Very heavy exercise (twice per day, extra heavy workouts)');
+
 		return View::make('profiles.edit')->with(compact('profile'))
-										  ->with(compact('genders'));
+										  ->with(compact('genders'))
+										  ->with(compact('activities'));
 	}
 
 	/**
@@ -164,6 +181,7 @@ class ProfilesController extends \BaseController {
 		$profile->age = Input::get('age');
 		$profile->height = $height;
 		$profile->weight = $weight;
+		$profile->activity = Input::get('activity');
 
 		if($profile->save())
 		{
