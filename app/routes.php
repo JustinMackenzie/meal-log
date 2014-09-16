@@ -23,6 +23,8 @@ Route::resource('weights', 'WeightsController');
 
 Route::resource('profiles', 'ProfilesController');
 
+Route::resource('foods', 'FoodsController');
+
 // route to show the login form
 Route::get('login', array('uses' => 'UsersController@login', 'as' => 'login'));
 
