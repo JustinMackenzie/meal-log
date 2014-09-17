@@ -17,29 +17,13 @@
 
             <div class="control-group">
                 {{ Form::label('food', 'Food') }}
-                {{ Form::text('food', Input::old('food', $entry->food), array('class' => 'form-control')) }}
-            </div>
-
-            <div class="control-group">
-                {{ Form::label('calories', 'Calories') }}
-                {{ Form::input('number','calories', Input::old('calories', $entry->calories), array('class' => 'form-control')) }}
-            </div>
-
-            <div class="control-group">
-                {{ Form::label('fats', 'Fats') }}
-                {{ Form::input('number','fats', Input::old('fats', $entry->fats), array('class' => 'form-control')) }}
-            </div>
-
-            <div class="control-group">
-                {{ Form::label('carbohydrates', 'Carbohydrates') }}
-                {{ Form::input('number','carbohydrates', Input::old('carbohydrates', $entry->carbohydrates), array('class' => 'form-control')) }}
-            </div>
-
-            <div class="control-group">
-                {{ Form::label('proteins', 'Proteins') }}
-                {{ Form::input('number','proteins', Input::old('proteins', $entry->proteins), array('class' => 'form-control')) }}
+                {{ Form::select('food', $foods, Input::old('food', $entry->food), array('class' => 'form-control')) }}
             </div>
     		
+            <div class="form-group">
+                {{ Form::label('servings', 'Number of Servings') }}
+                {{ Form::input('number','servings', Input::old('servings', $entry->servings), array('class' => 'form-control')) }}
+            </div>
 
             <div class="form-actions">
                 {{ Form::submit('Save', array('class' => 'btn btn-success btn-save btn-large')) }}

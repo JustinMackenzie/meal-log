@@ -28,10 +28,10 @@ class EntriesController extends \BaseController {
 
 		foreach ($entries as $entry) 
 		{
-			$totalCalories += $entry->calories;
-			$totalFats += $entry->fats;
-			$totalCarbs += $entry->carbohydrates;
-			$totalProteins += $entry->proteins;
+			$totalCalories += $entry->calories();
+			$totalFats += $entry->fats();
+			$totalCarbs += $entry->carbohydrates();
+			$totalProteins += $entry->proteins();
 		}
 
 		$goalCalories = (int)Auth::user()->profile->calculateTDEE();
@@ -55,7 +55,8 @@ class EntriesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('entries.create');
+		$foods = Food::all()->lists('name', 'id');
+		return View::make('entries.create')->with(compact('foods'));
 	}
 
 	/**
@@ -69,18 +70,12 @@ class EntriesController extends \BaseController {
 		// Validate input.
 		$input = array(
 			'food' => Input::get('food'),
-			'calories' => Input::get('calories'),
-			'fats' => Input::get('fats'),
-			'carbohydrates' => Input::get('carbohydrates'),
-			'proteins' => Input::get('proteins')
+			'servings' => Input::get('servings')
 			);
 
 		$rules = array(
 			'food' => 'required',
-			'calories' => array('required','numeric'),
-			'fats' => array('required','numeric'),
-			'carbohydrates' => array('required','numeric'),
-			'proteins' => array('required','numeric')
+			'servings' => array('required','numeric')
 			);
 
 		$validator = Validator::make($input, $rules);
@@ -93,12 +88,9 @@ class EntriesController extends \BaseController {
 
 		// Store the input in an entry.
 		$entry = new Entry();
-		$entry->food = Input::get('food');
-		$entry->fats = Input::get('fats');
-		$entry->carbohydrates = Input::get('carbohydrates');
-		$entry->proteins = Input::get('proteins');
-		$entry->calories = Input::get('calories');
+		$entry->food_id = Input::get('food');
 		$entry->user_id = Auth::user()->id;
+		$entry->servings = Input::get('servings');
 
 		if($entry->save())
 		{
@@ -133,8 +125,9 @@ class EntriesController extends \BaseController {
 	public function edit($id)
 	{
 		$entry = Entry::find($id);
-
-		return View::make('entries.edit', compact('entry'));
+		$foods = Food::all()->lists('name', 'id');
+		return View::make('entries.edit')->with(compact('entry'))
+								->with(compact('foods'));
 	}
 
 	/**
@@ -149,18 +142,12 @@ class EntriesController extends \BaseController {
 		// Validate input.
 		$input = array(
 			'food' => Input::get('food'),
-			'calories' => Input::get('calories'),
-			'fats' => Input::get('fats'),
-			'carbohydrates' => Input::get('carbohydrates'),
-			'proteins' => Input::get('proteins')
+			'servings' => Input::get('servings')
 			);
 
 		$rules = array(
 			'food' => 'required',
-			'calories' => array('required','numeric'),
-			'fats' => array('required','numeric'),
-			'carbohydrates' => array('required','numeric'),
-			'proteins' => array('required','numeric')
+			'servings' => array('required','numeric')
 			);
 
 		$validator = Validator::make($input, $rules);
@@ -173,11 +160,9 @@ class EntriesController extends \BaseController {
 
 		// Store the input in an entry.
 		$entry = Entry::find($id);
-		$entry->food = Input::get('food');
-		$entry->fats = Input::get('fats');
-		$entry->carbohydrates = Input::get('carbohydrates');
-		$entry->proteins = Input::get('proteins');
-		$entry->calories = Input::get('calories');
+		$entry->food_id = Input::get('food');
+		$entry->user_id = Auth::user()->id;
+		$entry->servings = Input::get('servings');
 
 		if($entry->save())
 		{

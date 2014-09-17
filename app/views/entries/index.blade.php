@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th>Food</th>
+                    <th>Servings</th>
                     <th>Calories</th>
                     <th>Fats</th>
                     <th>Carbohydrates</th>
@@ -19,11 +20,12 @@
             <tbody>
                 @foreach ($entries as $entry)
                     <tr>
-                        <td>{{ $entry->food }}</td>
-                        <td>{{ $entry->calories }}</td>
-                        <td>{{ $entry->fats }}</td>
-                        <td>{{ $entry->carbohydrates }}</td>
-                        <td>{{ $entry->proteins }}</td>
+                        <td>{{ $entry->food->name }}</td>
+                        <td>{{ $entry->servings }}</td>
+                        <td>{{ $entry->calories() }}</td>
+                        <td>{{ $entry->fats() }}</td>
+                        <td>{{ $entry->carbohydrates() }}</td>
+                        <td>{{ $entry->proteins() }}</td>
                         <td>
                             <a href="{{ URL::route('entries.edit', $entry->id) }}" class="btn btn-success btn-mini pull-left">Edit</a>
                         
@@ -35,6 +37,7 @@
                 @endforeach
                 <tr>
                 	<td><b>Total</b></td>
+                    <td></td>
                 	<td><b>{{ $totalCalories }}</b></td>
                     <td><b>{{ $totalFats }}</b></td>
                     <td><b>{{ $totalCarbs }}</b></td>
@@ -43,6 +46,7 @@
                 </tr>
                 <tr>
                     <td><b>Goal</b></td>
+                    <td></td>
                     <td><b>{{ $goalCalories }}</b></td>
                     <td></td>
                     <td></td>
@@ -51,6 +55,7 @@
                 </tr>
                 <tr>
                     <td><b>To Go</b></td>
+                    <td></td>
                     <td><b>{{ $toGoCalories }}</b></td>
                     <td></td>
                     <td></td>
