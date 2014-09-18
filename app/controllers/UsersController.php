@@ -88,7 +88,8 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = User::find($id);
+		return View::make('users.edit')->with(compact('user'));
 	}
 
 	/**
@@ -100,7 +101,36 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		// Validate input.
+		$input = array(
+			'password' => Input::get('password'),
+			'password_confirmation' => Input::get('confirmation')
+			);
+
+		$rules = array(
+			'password' => array('required', 'min:8' , 'confirmed'),
+			'password_confirmation' => array('required','min:8')
+			);
+
+		$validator = Validator::make($input, $rules);
+
+		if($validator->fails())
+		{
+			$messages = $validator->messages();
+			return Redirect::back()->withErrors($messages)->withInput();
+		}
+
+		$user = User::find($id);
+		$user->password = Hash::make(Input::get('password'));
+
+		if($user->save())
+		{
+			return Redirect::route('entries.index');
+		}
+		else
+		{
+			return Redirect::back();
+		}
 	}
 
 	/**
