@@ -2,6 +2,11 @@
 
 class FoodsController extends \BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('auth', array('except' => 'getLogin'));
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 * GET /foods
